@@ -34,8 +34,11 @@
 @property (weak) IBOutlet NSTextField *serverIP;
 @property (weak) IBOutlet NSTextField *serverPort;
 @property (weak) IBOutlet NSTextField *statusLabel;
-@property (weak) IBOutlet NSPopUpButton *daemonInstallType;
+//@property (weak) IBOutlet NSPopUpButton *daemonInstallType;
 @property (weak) IBOutlet NSTextField *mylarLocationTextField;
+
+@property (unsafe_unretained) IBOutlet NSPopUpButton *daemonInstallType;
+
 @property (unsafe_unretained) IBOutlet NSButtonCell *startStopButton;
 @property (unsafe_unretained) IBOutlet NSProgressIndicator *startStopSpinner;
 @property (unsafe_unretained) IBOutlet NSProgressIndicator *testConnectionSpinner;

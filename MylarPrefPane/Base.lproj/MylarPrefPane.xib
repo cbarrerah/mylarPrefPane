@@ -12,7 +12,7 @@
                 <outlet property="ServerPort" destination="anW-tj-w5g" id="ec5-d5-iJp"/>
                 <outlet property="StatusLabel" destination="L5H-3D-Ydj" id="7UR-y8-kqK"/>
                 <outlet property="_window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
-                <outlet property="daemonInstallType" destination="x7x-3M-k4d" id="SLa-0m-T3m"/>
+                <outlet property="daemonInstallType" destination="x7x-3M-k4d" id="Itj-Rd-ypd"/>
                 <outlet property="forumWebPageField" destination="ONC-Oi-Y4v" id="MBB-5H-GtJ"/>
                 <outlet property="gitWebPageField" destination="Xju-2D-cqX" id="tVv-t1-g2n"/>
                 <outlet property="mylarLocationTextField" destination="Ka4-8E-3VW" id="gqC-io-NSM"/>

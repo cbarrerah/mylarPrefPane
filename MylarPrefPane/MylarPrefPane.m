@@ -198,23 +198,6 @@
   
  */
     // for the moment, let's check if the plist exists, and if not, try to create it
-    
-//    // are we searching for this user or for all?
-//    NSString * base = @"";
-//    if ([self.daemonInstallType.selectedItem.title containsString:@"This user only"]) {
-//        // [self.debugLogOut setString:[NSString stringWithFormat:@"We're trying a install for %@", self.daemonInstallType.selectedItem.title]];
-//        // if just for this user, we add the ~ to latter expand it and go to the correct domain
-//        base = @"~";
-//    } else {
-//        //  [self.debugLogOut setString:[NSString stringWithFormat:@"We're trying a install for %@", self.daemonInstallType.selectedItem.title]];
-//        //base = @"";
-//    }
-//    
-//    //base = @"test";
-//        NSURL * testURL = [NSURL URLWithString:[[base stringByAppendingString:@"/Library/LaunchAgents/com.mylar.mylar.plist" ] stringByExpandingTildeInPath]];
-//
-//    [self.debugLogOut setString:[NSString stringWithFormat:@"The url where i want to look for the plist is:  %@",[testURL path]]];
-    
     NSURL * testURL = [self plistURL];
 
     BOOL test = [[NSFileManager defaultManager] fileExistsAtPath:[testURL path]];
@@ -225,9 +208,6 @@
         NSLog(@"There is no plist at %@", testURL );
         //[self.debugLogOut setString:[NSString stringWithFormat:@"There is no plist at %@",[testURL path]]];
     }
-    
-    
-
     
 /*
     If we want to install the new plis, we'll need to first create the plist, and then start it up
@@ -257,10 +237,11 @@
  
  We start by doing the single user step, because the all users step will need privilege escalation and that will lead to the helper app
  */
+#pragma mark Let's define the parameters of our plist
     
     NSString *label = @"com.mylar.mylar";
     NSArray *programArguments = [NSArray arrayWithObjects:@"/usr/bin/python2.7", self.mylarLocationTextField.stringValue, @"-q", nil];
-    NSNumber * runAtLoad = [NSNumber numberWithBool:NO];
+    NSNumber * runAtLoad = [NSNumber numberWithBool:YES];
     NSNumber * keepAlive = [NSNumber numberWithBool:NO];
  
     NSArray * objects = [NSArray arrayWithObjects:label, programArguments, runAtLoad, keepAlive, nil];
@@ -288,12 +269,14 @@
         
         //base = @"test";
         NSURL * theURL = [NSURL URLWithString:[[base stringByAppendingString:@"/Library/LaunchAgents/com.mylar.mylar.plist" ] stringByExpandingTildeInPath]];
+        NSLog(@"");
         return theURL;
         
     }
 - (void) saveAsXML: (id) thePlist atPath:(NSURL*) thePath{
 
     if (![NSPropertyListSerialization propertyList:thePlist isValidForFormat:NSPropertyListXMLFormat_v1_0]) {
+        NSLog(@"Invalid xml format");
         return;
         //invalid xml format
     }
@@ -302,6 +285,7 @@
     [NSPropertyListSerialization dataWithPropertyList:thePlist format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
     
     if (data ==nil) {
+        NSLog(@"error serializing");
         //error serializing
         return;
     }
@@ -313,8 +297,9 @@
         return;
         //error writing the file
     }
-    
+    NSLog(@"plist written ok!");
 }
+
 - (NSString*) serverURL
 {
     return     [NSString stringWithFormat:@"http://%@:%@/", [self.serverIP stringValue],[self.serverPort stringValue]];
@@ -331,7 +316,7 @@
     
     //[self.debugLogOut setString:theAddress];
 
-    NSURL *theURL = [NSURL URLWithString:theAddress];
+    NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@home",theAddress ]];
     NSLog(@"we create the url: %@", theURL);
     
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:theURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
@@ -368,7 +353,15 @@
 
 - (IBAction)startStopServer:(id)sender
 {
-    //[self.startStopSpinner startAnimation:self];
+    // first let's see if we have already a plist installed
+    
+    BOOL plistInstalled = [[NSFileManager defaultManager] fileExistsAtPath:[[self plistURL] path]];
+    NSLog(@"Is there a plist at? :%@", [self plistURL]);
+    
+    if (!plistInstalled) {
+        NSLog(@"couldn't find the plist");
+    }
+    NSLog(@"Yes there is, let's use it for our server");
     [self.testConnectionSpinner startAnimation:self];
     NSString * previousStatus = self.statusLabel.stringValue;
     self.statusLabel.stringValue=@"";
