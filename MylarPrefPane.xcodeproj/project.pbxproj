@@ -1,0 +1,325 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0782E11A1A57449000881409 /* MylarPrefPane.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 0782E1181A5743FF00881409 /* MylarPrefPane.tiff */; };
+		0782E11B1A5746D900881409 /* MylarPrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F2ACB81A4F48FC009B417F /* MylarPrefPane.xib */; };
+		07F2ACB31A4F48FC009B417F /* MylarPrefPane.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F2ACB21A4F48FC009B417F /* MylarPrefPane.h */; };
+		07F2ACB51A4F48FC009B417F /* MylarPrefPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F2ACB41A4F48FC009B417F /* MylarPrefPane.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		071F74041A5EFCCB00139CB3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LaunchServices;
+			dstSubfolderSpec = 1;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		071F73FE1A5EFAD500139CB3 /* MylarPrefPane-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MylarPrefPane-Info.plist"; sourceTree = "<group>"; };
+		0782E1181A5743FF00881409 /* MylarPrefPane.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MylarPrefPane.tiff; sourceTree = "<group>"; };
+		079EAAA81A5D669900F1CE13 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		07F2ACAD1A4F48FC009B417F /* MylarPrefPane.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MylarPrefPane.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F2ACB21A4F48FC009B417F /* MylarPrefPane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MylarPrefPane.h; sourceTree = "<group>"; };
+		07F2ACB41A4F48FC009B417F /* MylarPrefPane.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MylarPrefPane.m; sourceTree = "<group>"; };
+		07F2ACB91A4F48FC009B417F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MylarPrefPane.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		07F2ACA91A4F48FC009B417F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		071F73ED1A5EF81800139CB3 /* MylarPrefPane */ = {
+			isa = PBXGroup;
+			children = (
+				071F73FE1A5EFAD500139CB3 /* MylarPrefPane-Info.plist */,
+				07F2ACB21A4F48FC009B417F /* MylarPrefPane.h */,
+				07F2ACB41A4F48FC009B417F /* MylarPrefPane.m */,
+				07F2ACB81A4F48FC009B417F /* MylarPrefPane.xib */,
+			);
+			name = MylarPrefPane;
+			sourceTree = "<group>";
+		};
+		0782E0F81A545A8400881409 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				0782E1181A5743FF00881409 /* MylarPrefPane.tiff */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		07F2ACA31A4F48FC009B417F = {
+			isa = PBXGroup;
+			children = (
+				07F2ACAF1A4F48FC009B417F /* MylarPrefPane */,
+				07F2ACAE1A4F48FC009B417F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		07F2ACAE1A4F48FC009B417F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07F2ACAD1A4F48FC009B417F /* MylarPrefPane.prefPane */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		07F2ACAF1A4F48FC009B417F /* MylarPrefPane */ = {
+			isa = PBXGroup;
+			children = (
+				071F73ED1A5EF81800139CB3 /* MylarPrefPane */,
+				0782E0F81A545A8400881409 /* Assets */,
+				079EAAA81A5D669900F1CE13 /* MyPlayground.playground */,
+				07F2ACB01A4F48FC009B417F /* Supporting Files */,
+			);
+			path = MylarPrefPane;
+			sourceTree = "<group>";
+		};
+		07F2ACB01A4F48FC009B417F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		07F2ACAA1A4F48FC009B417F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07F2ACB31A4F48FC009B417F /* MylarPrefPane.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		07F2ACAC1A4F48FC009B417F /* MylarPrefPane */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07F2ACBD1A4F48FC009B417F /* Build configuration list for PBXNativeTarget "MylarPrefPane" */;
+			buildPhases = (
+				07F2ACA81A4F48FC009B417F /* Sources */,
+				07F2ACA91A4F48FC009B417F /* Frameworks */,
+				07F2ACAA1A4F48FC009B417F /* Headers */,
+				07F2ACAB1A4F48FC009B417F /* Resources */,
+				071F74041A5EFCCB00139CB3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MylarPrefPane;
+			productName = MylarPrefPane;
+			productReference = 07F2ACAD1A4F48FC009B417F /* MylarPrefPane.prefPane */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		07F2ACA41A4F48FC009B417F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Carlos Barrera";
+				TargetAttributes = {
+					07F2ACAC1A4F48FC009B417F = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 07F2ACA71A4F48FC009B417F /* Build configuration list for PBXProject "MylarPrefPane" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 07F2ACA31A4F48FC009B417F;
+			productRefGroup = 07F2ACAE1A4F48FC009B417F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				07F2ACAC1A4F48FC009B417F /* MylarPrefPane */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		07F2ACAB1A4F48FC009B417F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0782E11B1A5746D900881409 /* MylarPrefPane.xib in Resources */,
+				0782E11A1A57449000881409 /* MylarPrefPane.tiff in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		07F2ACA81A4F48FC009B417F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07F2ACB51A4F48FC009B417F /* MylarPrefPane.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		07F2ACB81A4F48FC009B417F /* MylarPrefPane.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07F2ACB91A4F48FC009B417F /* Base */,
+			);
+			name = MylarPrefPane.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		07F2ACBB1A4F48FC009B417F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = "";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		07F2ACBC1A4F48FC009B417F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = "";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		07F2ACBE1A4F48FC009B417F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "MylarPrefPane/MylarPrefPane-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Debug;
+		};
+		07F2ACBF1A4F48FC009B417F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "MylarPrefPane/MylarPrefPane-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		07F2ACA71A4F48FC009B417F /* Build configuration list for PBXProject "MylarPrefPane" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07F2ACBB1A4F48FC009B417F /* Debug */,
+				07F2ACBC1A4F48FC009B417F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07F2ACBD1A4F48FC009B417F /* Build configuration list for PBXNativeTarget "MylarPrefPane" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07F2ACBE1A4F48FC009B417F /* Debug */,
+				07F2ACBF1A4F48FC009B417F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 07F2ACA41A4F48FC009B417F /* Project object */;
+}
