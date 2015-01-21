@@ -189,7 +189,7 @@
 - (IBAction)setupDaemonButtonClicked:(id)sender
 {
     //here we communicate with the helper app to install a launchctl plist according to the selected
-    NSLog(@"We want to install the daemon for %@",[[self.daemonInstallType selectedItem] title]);
+    //NSLog(@"We want to install the daemon for %@",[[self.daemonInstallType selectedItem] title]);
     
  /*     in the future, we'll install the launchd plist needed for good behaviour, meanwhile, we'll try and
         give the user the needed options to configure the proper daemon
@@ -202,10 +202,10 @@
 
     BOOL test = [[NSFileManager defaultManager] fileExistsAtPath:[testURL path]];
     if (test) {
-        NSLog(@"There is a plist at %@", testURL );
+        //NSLog(@"There is a plist at %@", testURL );
         //[self.debugLogOut setString:[NSString stringWithFormat:@"There is a plist at %@",[testURL path]]];
     } else {
-        NSLog(@"There is no plist at %@", testURL );
+        //NSLog(@"There is no plist at %@", testURL );
         //[self.debugLogOut setString:[NSString stringWithFormat:@"There is no plist at %@",[testURL path]]];
     }
     
@@ -269,14 +269,14 @@
         
         //base = @"test";
         NSURL * theURL = [NSURL URLWithString:[[base stringByAppendingString:@"/Library/LaunchAgents/com.mylar.mylar.plist" ] stringByExpandingTildeInPath]];
-        NSLog(@"");
+        //NSLog(@"");
         return theURL;
         
     }
 - (void) saveAsXML: (id) thePlist atPath:(NSURL*) thePath{
 
     if (![NSPropertyListSerialization propertyList:thePlist isValidForFormat:NSPropertyListXMLFormat_v1_0]) {
-        NSLog(@"Invalid xml format");
+        //NSLog(@"Invalid xml format");
         return;
         //invalid xml format
     }
@@ -293,11 +293,11 @@
     BOOL writeStatus = [data writeToFile:[thePath path]  options:NSDataWritingAtomic error:&error];
     
     if (!writeStatus){
-        NSLog(@"Unable to write the plist due to error : %@",error);
+        //NSLog(@"Unable to write the plist due to error : %@",error);
         return;
         //error writing the file
     }
-    NSLog(@"plist written ok!");
+    //NSLog(@"plist written ok!");
 }
 
 - (NSString*) serverURL
@@ -317,10 +317,10 @@
     //[self.debugLogOut setString:theAddress];
 
     NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@home",theAddress ]];
-    NSLog(@"we create the url: %@", theURL);
+    //NSLog(@"we create the url: %@", theURL);
     
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:theURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
-        NSLog(@"We send the async request");
+        //NSLog(@"We send the async request");
         NSString *theResponseAsync =        [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
         NSUInteger identifierLocation = [theResponseAsync rangeOfString:@"<title>Mylar - Home</title>"].location;
@@ -328,7 +328,7 @@
         // we are working in a block so when we manipulate UI, we go back to main queue
         if (identifierLocation != NSNotFound){
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"Did contain the Mylar header");
+                //NSLog(@"Did contain the Mylar header");
                 // [self.debugLogOut setString:theResponseAsync];
                 self.statusLabel.stringValue = @"Online";
                 [self.startStopButton setTitle:@"Stop"];
@@ -337,7 +337,7 @@
                            );
             }else {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSLog(@"Didn't contain the Mylar header");
+                    //NSLog(@"Didn't contain the Mylar header");
                     // [self.debugLogOut setString:@"La cagamos"];
                     self.statusLabel.stringValue = @"Offline";
                     [self.startStopButton setTitle:@"Start"];
@@ -356,12 +356,12 @@
     // first let's see if we have already a plist installed
     
     BOOL plistInstalled = [[NSFileManager defaultManager] fileExistsAtPath:[[self plistURL] path]];
-    NSLog(@"Is there a plist at? :%@", [self plistURL]);
+    //NSLog(@"Is there a plist at? :%@", [self plistURL]);
     
     if (!plistInstalled) {
         NSLog(@"couldn't find the plist");
     }
-    NSLog(@"Yes there is, let's use it for our server");
+    //NSLog(@"Yes there is, let's use it for our server");
     [self.testConnectionSpinner startAnimation:self];
     NSString * previousStatus = self.statusLabel.stringValue;
     self.statusLabel.stringValue=@"";
@@ -385,7 +385,7 @@
     [unloadTask launch];
     
     [unloadTask waitUntilExit];
-    NSLog(@"finished unloading daemon");
+    //NSLog(@"finished unloading daemon");
     
     // if we came from an offline mode, we start up the server
     if ([previousStatus containsString:@"Off"]) {
@@ -399,7 +399,7 @@
         
         [loadTask waitUntilExit];
         
-        NSLog(@"finished loading daemon");
+        //NSLog(@"finished loading daemon");
     }
     
     // clumsy, but to be improved
