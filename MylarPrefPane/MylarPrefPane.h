@@ -8,6 +8,8 @@
 
 #import <PreferencePanes/PreferencePanes.h>
 #import <Foundation/Foundation.h>
+#import "PlistHandlerProtocol.h"
+#import <SecurityInterface/SFAuthorizationView.h>
 
 //#import <ServiceManagement/ServiceManagement.h>
 
@@ -16,6 +18,7 @@
 
 #define kMinServerResponseLength 300
 #define kMylarPrefPaneSavedPrefs @"MylarPrefPaneTestMessage"
+
 
 #define kserverIP @"serverIP"
 #define kserverPort @"serverPort"
@@ -29,6 +32,8 @@
 {
     CFStringRef appID;
     BOOL    *serverState;
+    id <PlistHandlerProtocol> _plistHandler;
+
 }
 
 @property (weak) IBOutlet NSTextField *serverIP;
@@ -44,6 +49,7 @@
 @property (unsafe_unretained) IBOutlet NSProgressIndicator *testConnectionSpinner;
 @property (unsafe_unretained) IBOutlet NSTextField *gitWebPageField;
 @property (unsafe_unretained) IBOutlet NSTextField *forumWebPageField;
+@property (unsafe_unretained) IBOutlet SFAuthorizationView *authView;
 
 //@property (unsafe_unretained) IBOutlet NSTextView *debugLogOut;
 

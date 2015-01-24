@@ -9,17 +9,33 @@
 /* Begin PBXBuildFile section */
 		0782E11A1A57449000881409 /* MylarPrefPane.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 0782E1181A5743FF00881409 /* MylarPrefPane.tiff */; };
 		0782E11B1A5746D900881409 /* MylarPrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F2ACB81A4F48FC009B417F /* MylarPrefPane.xib */; };
+		0792FCBE1A731DA100B06E75 /* PlistHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0792FCBD1A731DA100B06E75 /* PlistHandler.m */; };
+		0792FCC01A731DA100B06E75 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0792FCBF1A731DA100B06E75 /* main.m */; };
+		0792FCC71A73228700B06E75 /* PlistHandler.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0792FCB71A731DA100B06E75 /* PlistHandler.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0792FCC91A73235500B06E75 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0792FCC81A73235500B06E75 /* SecurityInterface.framework */; };
+		0792FCCB1A73235B00B06E75 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0792FCCA1A73235B00B06E75 /* Security.framework */; };
 		07F2ACB31A4F48FC009B417F /* MylarPrefPane.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F2ACB21A4F48FC009B417F /* MylarPrefPane.h */; };
 		07F2ACB51A4F48FC009B417F /* MylarPrefPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F2ACB41A4F48FC009B417F /* MylarPrefPane.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0792FCC51A731E2A00B06E75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F2ACA41A4F48FC009B417F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0792FCB61A731DA100B06E75;
+			remoteInfo = PlistHandler;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		071F74041A5EFCCB00139CB3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Contents/Library/LaunchServices;
-			dstSubfolderSpec = 1;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
 			files = (
+				0792FCC71A73228700B06E75 /* PlistHandler.xpc in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28,6 +44,14 @@
 /* Begin PBXFileReference section */
 		071F73FE1A5EFAD500139CB3 /* MylarPrefPane-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MylarPrefPane-Info.plist"; sourceTree = "<group>"; };
 		0782E1181A5743FF00881409 /* MylarPrefPane.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MylarPrefPane.tiff; sourceTree = "<group>"; };
+		0792FCB71A731DA100B06E75 /* PlistHandler.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = PlistHandler.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		0792FCBA1A731DA100B06E75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0792FCBB1A731DA100B06E75 /* PlistHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlistHandlerProtocol.h; sourceTree = "<group>"; };
+		0792FCBC1A731DA100B06E75 /* PlistHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlistHandler.h; sourceTree = "<group>"; };
+		0792FCBD1A731DA100B06E75 /* PlistHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlistHandler.m; sourceTree = "<group>"; };
+		0792FCBF1A731DA100B06E75 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0792FCC81A73235500B06E75 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
+		0792FCCA1A73235B00B06E75 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		079EAAA81A5D669900F1CE13 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		07F2ACAD1A4F48FC009B417F /* MylarPrefPane.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MylarPrefPane.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F2ACB21A4F48FC009B417F /* MylarPrefPane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MylarPrefPane.h; sourceTree = "<group>"; };
@@ -36,10 +60,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0792FCB41A731DA100B06E75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		07F2ACA91A4F48FC009B417F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0792FCCB1A73235B00B06E75 /* Security.framework in Frameworks */,
+				0792FCC91A73235500B06E75 /* SecurityInterface.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,10 +98,31 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
+		0792FCB81A731DA100B06E75 /* PlistHandler */ = {
+			isa = PBXGroup;
+			children = (
+				0792FCBB1A731DA100B06E75 /* PlistHandlerProtocol.h */,
+				0792FCBC1A731DA100B06E75 /* PlistHandler.h */,
+				0792FCBD1A731DA100B06E75 /* PlistHandler.m */,
+				0792FCBF1A731DA100B06E75 /* main.m */,
+				0792FCB91A731DA100B06E75 /* Supporting Files */,
+			);
+			path = PlistHandler;
+			sourceTree = "<group>";
+		};
+		0792FCB91A731DA100B06E75 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0792FCBA1A731DA100B06E75 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		07F2ACA31A4F48FC009B417F = {
 			isa = PBXGroup;
 			children = (
 				07F2ACAF1A4F48FC009B417F /* MylarPrefPane */,
+				0792FCB81A731DA100B06E75 /* PlistHandler */,
 				07F2ACAE1A4F48FC009B417F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				07F2ACAD1A4F48FC009B417F /* MylarPrefPane.prefPane */,
+				0792FCB71A731DA100B06E75 /* PlistHandler.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +150,8 @@
 		07F2ACB01A4F48FC009B417F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0792FCCA1A73235B00B06E75 /* Security.framework */,
+				0792FCC81A73235500B06E75 /* SecurityInterface.framework */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -113,6 +170,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		0792FCB61A731DA100B06E75 /* PlistHandler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0792FCC11A731DA100B06E75 /* Build configuration list for PBXNativeTarget "PlistHandler" */;
+			buildPhases = (
+				0792FCB31A731DA100B06E75 /* Sources */,
+				0792FCB41A731DA100B06E75 /* Frameworks */,
+				0792FCB51A731DA100B06E75 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PlistHandler;
+			productName = PlistHandler;
+			productReference = 0792FCB71A731DA100B06E75 /* PlistHandler.xpc */;
+			productType = "com.apple.product-type.xpc-service";
+		};
 		07F2ACAC1A4F48FC009B417F /* MylarPrefPane */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07F2ACBD1A4F48FC009B417F /* Build configuration list for PBXNativeTarget "MylarPrefPane" */;
@@ -126,6 +200,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0792FCC61A731E2A00B06E75 /* PBXTargetDependency */,
 			);
 			name = MylarPrefPane;
 			productName = MylarPrefPane;
@@ -141,6 +216,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Carlos Barrera";
 				TargetAttributes = {
+					0792FCB61A731DA100B06E75 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
 					07F2ACAC1A4F48FC009B417F = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -160,11 +238,19 @@
 			projectRoot = "";
 			targets = (
 				07F2ACAC1A4F48FC009B417F /* MylarPrefPane */,
+				0792FCB61A731DA100B06E75 /* PlistHandler */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0792FCB51A731DA100B06E75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		07F2ACAB1A4F48FC009B417F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -177,6 +263,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0792FCB31A731DA100B06E75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0792FCC01A731DA100B06E75 /* main.m in Sources */,
+				0792FCBE1A731DA100B06E75 /* PlistHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		07F2ACA81A4F48FC009B417F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -186,6 +281,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0792FCC61A731E2A00B06E75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0792FCB61A731DA100B06E75 /* PlistHandler */;
+			targetProxy = 0792FCC51A731E2A00B06E75 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		07F2ACB81A4F48FC009B417F /* MylarPrefPane.xib */ = {
@@ -199,6 +302,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0792FCC21A731DA100B06E75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PlistHandler/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		0792FCC31A731DA100B06E75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PlistHandler/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		07F2ACBB1A4F48FC009B417F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -277,7 +406,7 @@
 		07F2ACBE1A4F48FC009B417F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "MylarPrefPane/MylarPrefPane-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
@@ -289,7 +418,7 @@
 		07F2ACBF1A4F48FC009B417F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "MylarPrefPane/MylarPrefPane-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
@@ -301,6 +430,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0792FCC11A731DA100B06E75 /* Build configuration list for PBXNativeTarget "PlistHandler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0792FCC21A731DA100B06E75 /* Debug */,
+				0792FCC31A731DA100B06E75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		07F2ACA71A4F48FC009B417F /* Build configuration list for PBXProject "MylarPrefPane" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

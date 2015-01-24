@@ -47,7 +47,54 @@
     [self setHyperlinkWithTextField:self.gitWebPageField];
     [self setHyperlinkWithTextField:self.forumWebPageField];
     [self testConnectionButtonClicked:nil];
+    
+    AuthorizationItem items ={kAuthorizationRightExecute, 0, NULL, 0};
+    AuthorizationRights rights = {1, &items};
+    [self.authView setAuthorizationRights:&rights];
+    self.authView.delegate= self;
+    [self.authView updateStatus:nil];
+    [self.daemonInstallType setAutoenablesItems:NO];
+    
+    //NSArray * theMenuItems = self.daemonInstallType.itemArray;
+    [self.daemonInstallType.lastItem setEnabled:[self isUnlocked] ];
+    //    [theButton setEnabled:[self isUnlocked]];
+    
+    //Let's get this connection started (uah uah!)
+    NSXPCConnection *connection = [[NSXPCConnection alloc] initWithServiceName:@"edu.barrera.PlistHandler"];
+    connection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(PlistHandlerProtocol)];
+    [connection resume];
+    
+    //We have the connection stablished, let's get the remoteobject from it
+    _plistHandler = [connection remoteObjectProxyWithErrorHandler:^(NSError *err){
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            NSLog(@"There was an error: %@", err);
+        }];
+    }];
+
 }
+
+-(BOOL)isUnlocked {
+    return [self.authView authorizationState] == SFAuthorizationViewUnlockedState;
+}
+
+- (void) authorizationViewDidAuthorize:(SFAuthorizationView *)view
+{
+    [[self.daemonInstallType lastItem] setEnabled:[self isUnlocked]];
+    // ok we have admin priviledges, let's use them
+    
+    //check if there's a daemon allready installed so we can communicate with it
+    // if not, let's install it.
+    
+}
+
+- (void) authorizationViewDidDeauthorize:(SFAuthorizationView *)view
+{
+    [[self.daemonInstallType lastItem] setEnabled:[self isUnlocked]];
+    
+    //if we are deauthorizing, lets' get back to user domain
+    [self.daemonInstallType selectItem:[self.daemonInstallType itemAtIndex:0]];
+}
+
 
 -(void)willUnselect
 {
@@ -198,7 +245,7 @@
   
  */
     // for the moment, let's check if the plist exists, and if not, try to create it
-    NSURL * testURL = [self plistURL];
+/*    NSURL * testURL = [self plistURL];
 
     BOOL test = [[NSFileManager defaultManager] fileExistsAtPath:[testURL path]];
     if (test) {
@@ -208,7 +255,7 @@
         //NSLog(@"There is no plist at %@", testURL );
         //[self.debugLogOut setString:[NSString stringWithFormat:@"There is no plist at %@",[testURL path]]];
     }
-    
+*/
 /*
     If we want to install the new plis, we'll need to first create the plist, and then start it up
  <?xml version="1.0" encoding="UTF-8"?>
@@ -251,7 +298,44 @@
     NSDictionary *mylarConfig = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     // [self.debugLogOut setString:[mylarConfig description]];
     
-    [self saveAsXML:mylarConfig atPath:testURL];
+    //[self saveAsXML:mylarConfig atPath:testURL];
+    
+#pragma mark Here is where we decide what and how to write
+    
+    if (self.daemonInstallType.indexOfSelectedItem == 0) {
+        [_plistHandler writePlist:mylarConfig toPath:[[self plistUserURL] path] withReply:^(NSString *isOk) {
+            // what do we do with the reply?
+            //we do it in the mainqueue if it's ui related
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                if (isOk) {
+                    //[self.outputLabel setStringValue:isOk];
+                    NSLog(@"%@",isOk);
+                    
+                }
+            }];
+        }];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:[[self plistSystemURL] path] isDirectory:NO]) {
+            // we will need to erase the server plist
+        }
+    } else {
+        // we are installing as server
+        //we need to pass the authorization, so let's prepare it for the travel
+        AuthorizationExternalForm externalAuthorization;
+        AuthorizationMakeExternalForm([[self.authView authorization] authorizationRef], &externalAuthorization);
+        
+        
+        [_plistHandler writePlist:mylarConfig toPath:[[self plistSystemURL] path] withAuth:externalAuthorization withReply:^(NSString *isOk) {
+            // what do we do with the reply?
+            //we do it in the mainqueue if it's ui related
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                if (isOk) {
+//                    [self.outputLabel setStringValue:isOk];
+                    NSLog(@"%@",isOk);
+                }
+            }];
+        }];
+    }
+    
     
 }
 - (NSURL*) plistURL
@@ -273,38 +357,57 @@
         return theURL;
         
     }
-- (void) saveAsXML: (id) thePlist atPath:(NSURL*) thePath{
-
-    if (![NSPropertyListSerialization propertyList:thePlist isValidForFormat:NSPropertyListXMLFormat_v1_0]) {
-        //NSLog(@"Invalid xml format");
-        return;
-        //invalid xml format
-    }
-    NSError * error;
-    NSData *data =
-    [NSPropertyListSerialization dataWithPropertyList:thePlist format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
-    
-    if (data ==nil) {
-        NSLog(@"error serializing");
-        //error serializing
-        return;
-    }
-    
-    BOOL writeStatus = [data writeToFile:[thePath path]  options:NSDataWritingAtomic error:&error];
-    
-    if (!writeStatus){
-        //NSLog(@"Unable to write the plist due to error : %@",error);
-        return;
-        //error writing the file
-    }
-    //NSLog(@"plist written ok!");
-}
+//- (void) saveAsXML: (id) thePlist atPath:(NSURL*) thePath{
+//
+//    if (![NSPropertyListSerialization propertyList:thePlist isValidForFormat:NSPropertyListXMLFormat_v1_0]) {
+//        //NSLog(@"Invalid xml format");
+//        return;
+//        //invalid xml format
+//    }
+//    NSError * error;
+//    NSData *data =
+//    [NSPropertyListSerialization dataWithPropertyList:thePlist format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
+//    
+//    if (data ==nil) {
+//        NSLog(@"error serializing");
+//        //error serializing
+//        return;
+//    }
+//    
+//    BOOL writeStatus = [data writeToFile:[thePath path]  options:NSDataWritingAtomic error:&error];
+//    
+//    if (!writeStatus){
+//        //NSLog(@"Unable to write the plist due to error : %@",error);
+//        return;
+//        //error writing the file
+//    }
+//    //NSLog(@"plist written ok!");
+//}
 
 - (NSString*) serverURL
 {
     return     [NSString stringWithFormat:@"http://%@:%@/", [self.serverIP stringValue],[self.serverPort stringValue]];
 
 }
+
+- (NSURL*) plistUserURL
+{
+    // are we searching for this user or for all?
+    NSString * base = @"~";
+    NSURL * theURL = [NSURL URLWithString:[[base stringByAppendingString:@"/Library/LaunchAgents/com.mylar.mylar.plist" ] stringByExpandingTildeInPath]];
+    //NSLog(@"");
+    return theURL;
+}
+
+- (NSURL*) plistSystemURL
+{
+    // are we searching for this user or for all?
+    NSString * base = @"";
+    NSURL * theURL = [NSURL URLWithString:[[base stringByAppendingString:@"/Library/LaunchDaemons/com.mylar.mylar.plist" ] stringByExpandingTildeInPath]];
+    //NSLog(@"");
+    return theURL;
+}
+
 
 - (IBAction)testConnectionButtonClicked:(id)sender
 {
@@ -374,37 +477,62 @@
     // launchctl load "pathToPlist"
     
     // and voila, the service is ready to go
-    NSString * launchCTTL = @"/bin/launchctl";
-    NSString * command = @"unload";
-    NSString * pathToPlist = [[self plistURL]path];
-    
-    NSTask * unloadTask = [[NSTask alloc] init];
-    
-    unloadTask.launchPath = launchCTTL;
-    unloadTask.arguments = [NSArray arrayWithObjects:command, pathToPlist, nil];
-    [unloadTask launch];
-    
-    [unloadTask waitUntilExit];
+//    NSString * launchCTTL = @"/bin/launchctl";
+//    NSString * command = @"unload";
+//    NSString * pathToPlist = [[self plistURL]path];
+//    
+//    NSTask * unloadTask = [[NSTask alloc] init];
+//    
+//    unloadTask.launchPath = launchCTTL;
+//    unloadTask.arguments = [NSArray arrayWithObjects:command, pathToPlist, nil];
+//    [unloadTask launch];
+//    
+//    [unloadTask waitUntilExit];
     //NSLog(@"finished unloading daemon");
     
     // if we came from an offline mode, we start up the server
-    if ([previousStatus containsString:@"Off"]) {
-        
-        NSTask * loadTask = [[NSTask alloc] init];
-        command = @"load";
-        
-        loadTask.launchPath = launchCTTL;
-        loadTask.arguments = [NSArray arrayWithObjects:command, pathToPlist, nil];
-        [loadTask launch];
-        
-        [loadTask waitUntilExit];
-        
-        //NSLog(@"finished loading daemon");
-    }
+//    if ([previousStatus containsString:@"Off"]) {
+//        
+//        NSTask * loadTask = [[NSTask alloc] init];
+//        command = @"load";
+//        
+//        loadTask.launchPath = launchCTTL;
+//        loadTask.arguments = [NSArray arrayWithObjects:command, pathToPlist, nil];
+//        [loadTask launch];
+//        
+//        [loadTask waitUntilExit];
+//        
+//        //NSLog(@"finished loading daemon");
+//    }
     
     // clumsy, but to be improved
-    sleep(2);
+    //sleep(2);
     //wait for the server to initialize and update status signals in ui
+    BOOL serverScope = NO;
+    if ([self.daemonInstallType indexOfSelectedItem] != 0){
+        serverScope = YES;
+    }
+    
+    NSLog(@"serverscope = %hhd", serverScope);
+    
+    
+    AuthorizationExternalForm externalAuthorization;
+    AuthorizationMakeExternalForm([[self.authView authorization] authorizationRef], &externalAuthorization);
+
+    [_plistHandler stopServerWithAuth:externalAuthorization systemScope:serverScope withReply:^(NSString *stoptStatus){
+        NSLog(@"%@",stoptStatus);
+//        [_plistHandler startServerWithAuth:externalAuthorization systemScope:serverScope withReply:^(NSString *startStatus){
+//            NSLog(@"%@", startStatus);
+//        }];
+    }];
+    
+    if ( [previousStatus containsString:@"Off"]){
+        [_plistHandler startServerWithAuth:externalAuthorization systemScope:serverScope withReply:^(NSString *startStatus){
+            NSLog(@"%@", startStatus);
+        }];
+
+    }
+    sleep(2);
     [self.startStopSpinner stopAnimation:self];
     [self testConnectionButtonClicked:self];
     
